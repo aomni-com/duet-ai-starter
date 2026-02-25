@@ -37,12 +37,28 @@ src/
 | `bun run build` | Type-check then build for production |
 | `bun run preview` | Preview the production build |
 | `bun run check-types` | Run TypeScript type checking |
+| `bun run db:push` | Push schema changes to the database |
 | `bun run lint` | Fix lint and formatting issues via Ultracite |
+
+## Database
+
+The backend uses Drizzle ORM with SQLite (via libSQL). The schema is defined in `src/backend/db.ts` and the Drizzle config is in `drizzle.config.ts`.
+
+The `DB_FILE_NAME` environment variable must be set (e.g. in `.env`) to point to your SQLite database file.
+
+After modifying the schema, push the changes to the database:
+
+```sh
+bun run db:push
+```
+
+This uses `drizzle-kit push` to apply schema changes directly without generating migration files.
 
 ## Development
 
 ```sh
 bun install
+bun run db:push
 bun dev
 ```
 

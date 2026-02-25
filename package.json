@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "check-types": "tsc --noEmit",
+    "db:push": "drizzle-kit push",
     "dev": "vite",
     "lint": "ultracite fix",
     "prepare": "husky"
