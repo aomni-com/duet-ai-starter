@@ -1,0 +1,10 @@
+{
+  "hooks": {
+    "afterFileEdit": [
+      {
+        "command": "npx ultracite fix"
+      }
+    ]
+  },
+  "version": 1
+}

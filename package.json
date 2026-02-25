@@ -1,0 +1,47 @@
+{
+  "name": "duet-ai-starter",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check-types": "tsc --noEmit",
+    "dev": "vite",
+    "lint": "ultracite fix",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,jsonc,css,scss,md,mdx}": [
+      "npx ultracite fix"
+    ]
+  },
+  "dependencies": {
+    "@hono/zod-validator": "^0.7.6",
+    "@hookform/resolvers": "^5.2.2",
+    "@libsql/client": "^0.17.0",
+    "@tanstack/react-query": "^5.90.21",
+    "dotenv": "^17.3.1",
+    "drizzle-orm": "^0.45.1",
+    "hono": "^4.12.2",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-hook-form": "^7.71.2",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.4",
+    "@hono/vite-dev-server": "^0.25.0",
+    "@tailwindcss/vite": "^4.2.1",
+    "@types/node": "^25.3.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.4",
+    "drizzle-kit": "^0.31.9",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "tailwindcss": "^4.2.1",
+    "tsx": "^4.21.0",
+    "typescript": "~5.9.3",
+    "ultracite": "^7.2.3",
+    "vite": "^7.3.1"
+  }
+}
