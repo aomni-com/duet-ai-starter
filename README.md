@@ -56,6 +56,12 @@ bun dev
 
 The `DB_FILE_NAME` environment variable must be set (e.g. in `.env`) to point to your SQLite database file before running.
 
+Set the `PORT` environment variable to change the dev server port (defaults to `5173`):
+
+```sh
+PORT=3000 bun dev
+```
+
 ## Database
 
 The backend uses Drizzle ORM with SQLite (via libSQL). The schema is defined in `src/backend/db.ts` and the Drizzle config is in `drizzle.config.ts`.

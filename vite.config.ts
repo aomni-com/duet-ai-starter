@@ -5,6 +5,9 @@ import { defineConfig } from 'vite'
 
 export default defineConfig({
   root: 'src/frontend',
+  server: {
+    port: Number(process.env.PORT) || 5173,
+  },
   plugins: [
     honoDev({
       entry: './src/backend/index.ts',
