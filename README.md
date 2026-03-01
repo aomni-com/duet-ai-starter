@@ -41,7 +41,8 @@ src/
 
 | Command | Description |
 |---|---|
-| `bun dev` | Start Vite dev server (frontend + backend) |
+| `bun dev` | Start Vite dev server (frontend + backend), loads `.env` |
+| `bun start` | Start server in production mode, loads `.env.production` and `.env` |
 | `bun run check-types` | Run TypeScript type checking |
 | `bun run db:push` | Push schema changes to the database |
 | `bun run lint` | Fix lint and formatting issues via Ultracite |
@@ -54,13 +55,34 @@ bun run db:push
 bun dev
 ```
 
-The `DB_FILE_NAME` environment variable must be set (e.g. in `.env`) to point to your SQLite database file before running.
+The `DB_FILE_NAME` environment variable must be set to point to your SQLite database file before running.
 
-Set the `PORT` environment variable to change the dev server port (defaults to `5173`):
+### Environment Files
+
+Vite loads env files in order of precedence (later files override earlier ones):
+
+| Command | Files loaded |
+|---|---|
+| `bun dev` | `.env`, `.env.development`, `.env.development.local`, `.env.local` |
+| `bun start` | `.env`, `.env.production`, `.env.production.local`, `.env.local` |
+
+Put shared defaults (like `DB_FILE_NAME`) in `.env`. Use `.env.production` for production-specific overrides (e.g. a different database path). Files ending in `.local` are gitignored and intended for machine-specific secrets.
+
+### Port
+
+Set the `PORT` environment variable to change the server port (defaults to `5173`):
 
 ```sh
 PORT=3000 bun dev
 ```
+
+## Production
+
+```sh
+bun start
+```
+
+This runs `vite --mode production`, which loads `.env.production` (if present) over `.env` and sets `NODE_ENV=production`. The server itself is still the Vite dev server — suitable for low-traffic use. For high-traffic deployments, consider adding a build step with a standalone Node server.
 
 ## Database
 

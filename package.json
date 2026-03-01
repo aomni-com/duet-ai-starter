@@ -7,6 +7,7 @@
     "check-types": "tsc --noEmit",
     "db:push": "drizzle-kit push",
     "dev": "vite",
+    "start": "vite --mode production",
     "lint": "ultracite fix",
     "prepare": "husky"
   },
