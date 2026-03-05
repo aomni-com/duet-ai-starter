@@ -51,11 +51,11 @@ src/
 
 ```sh
 bun install
-bun run db:push
+bun run db:push   # skip if not using the database
 bun dev
 ```
 
-The `DB_FILE_NAME` environment variable must be set to point to your SQLite database file before running.
+If using the database, the `DB_FILE_NAME` environment variable must be set (already configured in `.env`).
 
 ### Environment Files
 
@@ -86,7 +86,20 @@ This runs `vite --mode production`, which loads `.env.production` (if present) o
 
 ## Database
 
+The database is **optional**. If your app doesn't need persistence, you can remove the database setup entirely:
+
+1. Delete `src/backend/db.ts` and `drizzle.config.ts`
+2. Remove the `DB_FILE_NAME` variable from `.env`
+3. Remove any routes that reference `db` or `usersTable` from `src/backend/index.ts`
+4. Uninstall the database packages: `bun remove drizzle-orm drizzle-kit @libsql/client`
+
+Without these, the app runs as a pure API + React SPA with no database dependency.
+
+### Using the Database
+
 The backend uses Drizzle ORM with SQLite (via libSQL). The schema is defined in `src/backend/db.ts` and the Drizzle config is in `drizzle.config.ts`.
+
+The `DB_FILE_NAME` environment variable must be set (already configured in `.env` as `file:local.db`). The database file is created in the repo root and is gitignored.
 
 After modifying the schema, push the changes to the database:
 
